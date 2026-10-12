@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zaibatsu-factory-draw-v7';
+const CACHE_NAME = 'zaibatsu-factory-draw-v8';
 const APP_FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -19,7 +19,9 @@ self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
-        const response = await fetch(event.request);
+        const navigationUrl = new URL(event.request.url);
+        navigationUrl.searchParams.set('app-version', CACHE_NAME);
+        const response = await fetch(navigationUrl, { cache: 'no-store' });
         if (response.ok) {
           const cache = await caches.open(CACHE_NAME);
           await Promise.all([
