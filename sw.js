@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zaibatsu-factory-draw-v10';
+const CACHE_NAME = 'zaibatsu-factory-draw-v11';
 const APP_FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -32,6 +32,24 @@ self.addEventListener('fetch', (event) => {
         return response;
       } catch {
         return (await caches.match(event.request)) || caches.match(new URL('./index.html', self.registration.scope));
+      }
+    })());
+    return;
+  }
+
+  const requestUrl = new URL(event.request.url);
+  if (requestUrl.pathname.endsWith('/app.js') || requestUrl.pathname.endsWith('/styles.css')) {
+    requestUrl.searchParams.set('app-version', CACHE_NAME);
+    event.respondWith((async () => {
+      try {
+        const response = await fetch(requestUrl, { cache: 'no-store' });
+        if (response.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(event.request, response.clone());
+        }
+        return response;
+      } catch {
+        return caches.match(event.request);
       }
     })());
     return;
