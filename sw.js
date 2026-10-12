@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zaibatsu-factory-draw-v11';
+const CACHE_NAME = 'zaibatsu-factory-draw-v12';
 const APP_FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
