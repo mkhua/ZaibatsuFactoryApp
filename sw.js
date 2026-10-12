@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zaibatsu-factory-draw-v6';
+const CACHE_NAME = 'zaibatsu-factory-draw-v7';
 const APP_FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -15,6 +15,26 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+
+  if (event.request.mode === 'navigate') {
+    event.respondWith((async () => {
+      try {
+        const response = await fetch(event.request);
+        if (response.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          await Promise.all([
+            cache.put(event.request, response.clone()),
+            cache.put(new URL('./index.html', self.registration.scope), response.clone()),
+          ]);
+        }
+        return response;
+      } catch {
+        return (await caches.match(event.request)) || caches.match(new URL('./index.html', self.registration.scope));
+      }
+    })());
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
       const copy = response.clone();
