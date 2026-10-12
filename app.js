@@ -92,13 +92,7 @@ function renderDraw() {
       const chip = document.createElement('span');
       chip.className = 'factory-chip';
       chip.setAttribute('aria-label', `Tile ${factory.number}, side ${factory.side}`);
-      const number = document.createElement('span');
-      number.className = 'tile-number';
-      number.textContent = factory.number;
-      const side = document.createElement('span');
-      side.className = 'side-badge';
-      side.textContent = factory.side;
-      chip.append(number, side);
+      chip.textContent = `${factory.number}${factory.side}`;
       list.append(chip);
     });
 

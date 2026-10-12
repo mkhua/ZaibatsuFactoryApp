@@ -98,9 +98,7 @@ h1 em { color: var(--red); font-weight: 500; }
 .good-card { min-width: 0; padding: 0 12px 12px; background: #172e2c; border: 1px solid #304d49; animation: row-in 250ms both; }
 .good-heading { display: grid; min-height: 38px; place-items: center; margin: 0 -12px 11px; padding: 7px 10px; color: var(--good-ink); background: var(--good-color); font-size: 14px; font-weight: 700; text-align: center; }
 .factory-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
-.factory-chip { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 0; min-height: 52px; padding: 4px 6px; background: #102321; border: 1px solid #35534d; font: 13px var(--mono); white-space: nowrap; }
-.tile-number { display: grid; width: 30px; height: 30px; place-items: center; color: #e8f5ed; background: #28504a; font: 15px var(--mono); }
-.side-badge { color: var(--gold); font-weight: 700; }
+.factory-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 0; min-height: 52px; padding: 4px 6px; color: #e8f5ed; background: #102321; border: 1px solid #35534d; font: 700 17px var(--mono); white-space: nowrap; }
 .results-footer { display: flex; justify-content: space-between; align-items: center; min-height: 32px; margin-top: 12px; padding-top: 10px; color: var(--muted); border-top: 1px solid var(--line); font-size: 9px; }
 #copy-status { color: var(--green); text-align: right; }
 
@@ -136,9 +134,7 @@ h1 em { color: var(--red); font-weight: 500; }
   .good-card { padding: 0 8px 9px; }
   .good-heading { min-height: 35px; margin: 0 -8px 8px; font-size: 12px; }
   .factory-list { gap: 5px; }
-  .factory-chip { gap: 4px; min-height: 47px; padding: 3px 4px; font-size: 12px; }
-  .tile-number { width: 27px; height: 27px; font-size: 14px; }
-  .side-badge { font-size: 13px; }
+  .factory-chip { min-height: 47px; padding: 3px 4px; font-size: 15px; }
   .results-footer { font-size: 8px; }
   .footer-note { margin-top: 22px; padding-bottom: 4px; }
 }
@@ -147,8 +143,7 @@ h1 em { color: var(--red); font-weight: 500; }
   .results-section { padding-right: 9px; padding-left: 9px; }
   .good-card { padding-right: 6px; padding-left: 6px; }
   .good-heading { margin-right: -6px; margin-left: -6px; font-size: 11px; }
-  .factory-chip { min-height: 44px; gap: 3px; padding: 3px 2px; }
-  .tile-number { width: 25px; height: 25px; font-size: 13px; }
+  .factory-chip { min-height: 44px; padding: 3px 2px; font-size: 14px; }
   .good-heading { font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
